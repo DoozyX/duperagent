@@ -9,9 +9,8 @@
 #include <QtQml/qqml.h>
 
 class QQmlEngine;
-class QJsEngine;
 
-namespace com { namespace cutehacks { namespace duperagent {
+namespace com::cutehacks::duperagent {
 
 class ResponseType : public QObject {
     Q_OBJECT
@@ -31,39 +30,39 @@ class Request : public QObject
     Q_OBJECT
 
 public:
-    Request(QQmlEngine *engine, QObject *parent = 0);
+    explicit Request(QQmlEngine *engine, QObject *parent = nullptr);
 
     Q_PROPERTY(QJSValue cookie READ cookie WRITE setCookie)
 
-    Q_INVOKABLE void config(const QJSValue &);
+    Q_INVOKABLE [[maybe_unused]] static void config(const QJSValue &);
 
-    Q_INVOKABLE QJSValue get(const QJSValue&,
+    Q_INVOKABLE [[maybe_unused]] [[nodiscard]] QJSValue get(const QJSValue&,
                               const QJSValue& = QJSValue(),
                               const QJSValue& = QJSValue()) const;
-    Q_INVOKABLE QJSValue head(const QJSValue&,
+    Q_INVOKABLE [[maybe_unused]] [[nodiscard]] QJSValue head(const QJSValue&,
                               const QJSValue& = QJSValue(),
                               const QJSValue& = QJSValue()) const;
-    Q_INVOKABLE QJSValue del(const QJSValue&,
+    Q_INVOKABLE [[maybe_unused]] [[maybe_unused]] [[nodiscard]] QJSValue del(const QJSValue&,
                               const QJSValue& = QJSValue()) const;
-    Q_INVOKABLE QJSValue patch(const QJSValue&,
+    Q_INVOKABLE [[maybe_unused]] [[nodiscard]] QJSValue patch(const QJSValue&,
                               const QJSValue& = QJSValue(),
                               const QJSValue& = QJSValue()) const;
-    Q_INVOKABLE QJSValue post(const QJSValue&,
+    Q_INVOKABLE [[maybe_unused]] [[nodiscard]] QJSValue post(const QJSValue&,
                               const QJSValue& = QJSValue(),
                               const QJSValue& = QJSValue()) const;
-    Q_INVOKABLE QJSValue put(const QJSValue&,
+    Q_INVOKABLE [[maybe_unused]] [[nodiscard]] QJSValue put(const QJSValue&,
                               const QJSValue& = QJSValue(),
                               const QJSValue& = QJSValue()) const;
 
-    QJSValue cookie() const;
+    [[nodiscard]] QJSValue cookie() const;
     void setCookie(const QJSValue &);
 
-    Q_INVOKABLE void clearCookies();
+    Q_INVOKABLE [[maybe_unused]] void clearCookies();
 
 private:
     QQmlEngine *m_engine;
 };
 
-} } }
+}
 
 #endif // DUPERAGENT_H

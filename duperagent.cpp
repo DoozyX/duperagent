@@ -12,7 +12,7 @@
 #include "networkactivityindicator.h"
 #include "imageutils.h"
 
-namespace com { namespace cutehacks { namespace duperagent {
+namespace com::cutehacks::duperagent {
 
 static const char* DUPERAGENT_URI = "com.cutehacks.duperagent";
 
@@ -28,14 +28,14 @@ Request::Request(QQmlEngine *engine, QObject *parent) :
     contentTypes.insert("form-data", "application/x-www-form-urlencoded");
 }
 
-void Request::config(const QJSValue &options)
+[[maybe_unused]] void Request::config(const QJSValue &options)
 {
     Config::instance()->setOptions(options);
 }
 
-QJSValue Request::get(const QJSValue &url, const QJSValue &data, const QJSValue &fn) const
+[[maybe_unused]] QJSValue Request::get(const QJSValue &url, const QJSValue &data, const QJSValue &fn) const
 {
-    RequestPrototype *proto = new RequestPrototype(
+    auto proto = new RequestPrototype(
                 m_engine,
                 RequestPrototype::Get,
                 QUrl(url.toString()));
@@ -53,9 +53,9 @@ QJSValue Request::get(const QJSValue &url, const QJSValue &data, const QJSValue 
     return proto->self();
 }
 
-QJSValue Request::head(const QJSValue &url, const QJSValue &data, const QJSValue &fn) const
+[[maybe_unused]] QJSValue Request::head(const QJSValue &url, const QJSValue &data, const QJSValue &fn) const
 {
-    RequestPrototype *proto = new RequestPrototype(
+    auto proto = new RequestPrototype(
                 m_engine,
                 RequestPrototype::Head,
                 QUrl(url.toString()));
@@ -73,9 +73,9 @@ QJSValue Request::head(const QJSValue &url, const QJSValue &data, const QJSValue
     return proto->self();
 }
 
-QJSValue Request::del(const QJSValue &url, const QJSValue &fn) const
+[[maybe_unused]] QJSValue Request::del(const QJSValue &url, const QJSValue &fn) const
 {
-    RequestPrototype *proto = new RequestPrototype(
+    auto proto = new RequestPrototype(
                 m_engine,
                 RequestPrototype::Delete,
                 QUrl(url.toString()));
@@ -87,9 +87,9 @@ QJSValue Request::del(const QJSValue &url, const QJSValue &fn) const
     return proto->self();
 }
 
-QJSValue Request::patch(const QJSValue &url, const QJSValue &data, const QJSValue &fn) const
+[[maybe_unused]] QJSValue Request::patch(const QJSValue &url, const QJSValue &data, const QJSValue &fn) const
 {
-    RequestPrototype *proto = new RequestPrototype(
+    auto proto = new RequestPrototype(
                 m_engine,
                 RequestPrototype::Patch,
                 QUrl(url.toString()));
@@ -107,9 +107,9 @@ QJSValue Request::patch(const QJSValue &url, const QJSValue &data, const QJSValu
     return proto->self();
 }
 
-QJSValue Request::post(const QJSValue &url, const QJSValue &data, const QJSValue &fn) const
+[[maybe_unused]] QJSValue Request::post(const QJSValue &url, const QJSValue &data, const QJSValue &fn) const
 {
-    RequestPrototype *proto = new RequestPrototype(
+    auto proto = new RequestPrototype(
                 m_engine,
                 RequestPrototype::Post,
                 QUrl(url.toString()));
@@ -127,9 +127,9 @@ QJSValue Request::post(const QJSValue &url, const QJSValue &data, const QJSValue
     return proto->self();
 }
 
-QJSValue Request::put(const QJSValue &url, const QJSValue &data, const QJSValue &fn) const
+[[maybe_unused]] QJSValue Request::put(const QJSValue &url, const QJSValue &data, const QJSValue &fn) const
 {
-    RequestPrototype *proto = new RequestPrototype(
+    auto proto = new RequestPrototype(
                 m_engine,
                 RequestPrototype::Put,
                 QUrl(url.toString()));
@@ -151,7 +151,7 @@ QJSValue Request::cookie() const
 {
     Config::instance()->init(m_engine);
 
-    CookieJar *jar = qobject_cast<CookieJar*>(m_engine->networkAccessManager()->cookieJar());
+    auto jar = qobject_cast<CookieJar*>(m_engine->networkAccessManager()->cookieJar());
     if (!jar)
         return QJSValue("");
 
@@ -162,18 +162,18 @@ void Request::setCookie(const QJSValue &cookie)
 {
     Config::instance()->init(m_engine);
 
-    CookieJar *jar = qobject_cast<CookieJar*>(m_engine->networkAccessManager()->cookieJar());
+    auto jar = qobject_cast<CookieJar*>(m_engine->networkAccessManager()->cookieJar());
     if (!jar)
         return;
 
     jar->addCookie(cookie.toString());
 }
 
-void Request::clearCookies()
+[[maybe_unused]] void Request::clearCookies()
 {
     Config::instance()->init(m_engine);
 
-    CookieJar *jar = qobject_cast<CookieJar*>(m_engine->networkAccessManager()->cookieJar());
+    auto jar = qobject_cast<CookieJar*>(m_engine->networkAccessManager()->cookieJar());
     if (!jar)
         return;
 
@@ -243,4 +243,4 @@ static void registerTypes()
 
 Q_COREAPP_STARTUP_FUNCTION(registerTypes)
 
-} } }
+}
