@@ -6,8 +6,6 @@
 
 #include <QtQml/QJSValue>
 
-#include "qpm.h"
-
 class QQmlEngine;
 
 namespace com { namespace cutehacks { namespace duperagent {

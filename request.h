@@ -12,8 +12,6 @@
 #include <QtNetwork/QNetworkReply>
 #include <QtQml/QJSValue>
 
-#include "qpm.h"
-
 class QHttpMultiPart;
 class QQmlEngine;
 

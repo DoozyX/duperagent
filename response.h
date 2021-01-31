@@ -11,8 +11,6 @@
 class QQmlEngine;
 class QNetworkReply;
 
-#include "qpm.h"
-
 namespace com { namespace cutehacks { namespace duperagent {
 
 class ResponsePrototype : public QObject {

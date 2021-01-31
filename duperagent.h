@@ -8,8 +8,6 @@
 #include <QtQml/QJSValue>
 #include <QtQml/qqml.h>
 
-#include "qpm.h"
-
 class QQmlEngine;
 class QJsEngine;
 
